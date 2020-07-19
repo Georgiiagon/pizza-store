@@ -4,10 +4,13 @@ import api from '../../api/api';
 export default {
     state: {
         user: {},
+        token: Cookie.get('token') || '',
+        isAuth: false
     },
     getters: {
-        isAuth: state => !!state.user,
+        isAuth: state => state.isAuth,
         user: state => state.user,
+        token: state => state.token,
     },
     mutations: {
         setUser: (state, user) => {
@@ -16,11 +19,19 @@ export default {
         setAuth (state, value) {
             state.isAuth = value
         },
+        setToken (state, value) {
+            state.isAuth = value
+        },
     },
     actions: {
-        async login ({ dispatch }, credentials) {
+        async login ({ dispatch, commit }, credentials) {
             await axios.get('/sanctum/csrf-cookie');
-            await axios.post('api/login', credentials);
+            await axios.post('api/login', credentials).then(response => {
+                let authToken = 'Bearer ' + response.data;
+                Cookie.set('token', authToken, { expires: 1 });
+                window.axios.defaults.headers.common['Authorization'] = authToken;
+                commit('setToken', authToken);
+            });
 
             return dispatch('profile')
         },
@@ -34,14 +45,11 @@ export default {
             })
         },
         async register ({ dispatch }, credentials) {
-            console.log(credentials);
-            await axios.post('api/register', credentials);
-
-            return dispatch('profile')
+            return await axios.post('api/register', credentials);
         },
         exit({commit}) {
             return new Promise((resolve, reject) => {
-                // Cookie.remove('access_token');
+                Cookie.remove('token');
                 api.get('/api/logout')
                     .then(function (response) {
                         resolve(response);
@@ -50,7 +58,10 @@ export default {
                         reject(error);
                     })
                     .finally(function () {
-                        commit('setUser', {});
+                        commit('setAuth', false);
+                        commit('setUser', null);
+
+                        this.$router.replace({ name: 'home' })
                     });
             });
         },

@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 import cart from './modules/cart'
 import home from './modules/home'
 import login from './modules/login'
+import orders from './modules/orders'
 import {store} from '../store/index.js';
 
 Vue.use(VueRouter);
@@ -17,7 +18,8 @@ let router = new VueRouter({
                 ...[{path: '', redirect: 'home'}],
                 ...home,
                 ...cart,
-                ...login
+                ...login,
+                ...orders
             ]
         },
     ],

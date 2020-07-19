@@ -123,11 +123,10 @@
                 }).then(function () {
                     that.$appNotify.success('You have successfully ordered your pizza!');
 
-                    this.$bvModal.hide('order-modal')
+                    that.$bvModal.hide('order-modal')
                 }).catch((error) => {
                     that.$appNotify.error(error.response.data);
                 });
-
             },
             changeCart(product_id, count) {
                 this.$store.dispatch('data/changeCart', {product_id: product_id, count: count});

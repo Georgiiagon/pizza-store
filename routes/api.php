@@ -13,15 +13,23 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-//Route::post('login', 'Admin\Api\LoginController@login');
+
+Route::post('/login', 'Auth\LoginController@login');
+
+Route::middleware('auth:sanctum')->get('/profile', function (Request $request) {
+    return $request->user();
+});
+
+Route::middleware(['auth:sanctum'])->group(function () {
+    Route::resource('order', 'Api\OrderController')->only(['index', 'store']);
+    Route::post('/logout', 'Auth\LoginController@logout');
+});
+Route::post('/order-no-register', 'Api\OrderController@store');
 
 
 Route::get('get-products', 'Api\ProductController@getProducts');
 Route::get('get-cookie', 'Api\OrderController@getCookie');
 Auth::routes(['verify' => false, 'reset' => false]);
-Route::resource('order', 'Api\OrderController')->only(['index', 'store']);
 
-Route::middleware('auth:sanctum')->group(function () {
-    Route::get('/profile', 'Auth\ProfileController@profile');
-});
+
 

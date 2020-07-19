@@ -137,16 +137,30 @@
         methods: {
             ...mapActions({
                 login: 'login',
-                register: 'register',
             }),
             async submit () {
-                await this.login(this.form);
-                this.$router.replace({ name: 'home' })
+                await this.login({email: this.form.email, password: this.form.password});
+                this.$router.replace({ name: 'home' });
             },
             async registration () {
-                await this.register(this.form);
-                this.$router.replace({ name: 'home' })
+                let that = this;
+                await this.$store.dispatch('register', this.form).then(response => {
+
+                }).catch((error) => {
+                    console.log(error);
+                    that.$appNotify.error(error.response.data);
+                });
+                await that.submit();
             },
+            async reset() {
+                this.form = {
+                    name: '',
+                    surname: '',
+                    address: '',
+                    email: '',
+                    password: '',
+                };
+            }
         }
     }
 </script>

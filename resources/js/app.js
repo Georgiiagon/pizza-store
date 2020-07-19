@@ -15,6 +15,8 @@ Vue.use(BootstrapVue);
 Vue.use(IconsPlugin);
 Vue.use(AppNotify);
 
+window.axios.defaults.headers.common['Authorization'] = store.getters.token;
+
 store.dispatch('profile').then(() => {
     new Vue({
         el: '#app',

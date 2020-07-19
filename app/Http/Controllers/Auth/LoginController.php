@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Request;
+use Illuminate\Validation\ValidationException;
+use Laravel\Sanctum\Sanctum;
+
 
 class LoginController extends Controller
 {
@@ -43,36 +46,26 @@ class LoginController extends Controller
 
     public function login(Request $request)
     {
-        try {
-            $request->validate([
-                'email' => 'required|email',
-                'password' => 'required'
+        $request->validate([
+            'email' => 'required|email',
+            'password' => 'required',
+        ]);
+
+        $user = User::where('email', $request->email)->first();
+
+        if (! $user || ! Hash::check($request->password, $user->password)) {
+            throw ValidationException::withMessages([
+                'email' => ['The provided credentials are incorrect.'],
             ]);
-            $credentials = request(['email', 'password']);
-            if (!Auth::attempt($credentials)) {
-                return response()->json([
-                    'status_code'=> 500,
-                    'message' => 'Unauthorized'
-                ]);
-            }
-            $user = User::where('email', $request->email)->first();
-
-            if (!Hash::check($request->password, $user->password, [])) {
-                throw new \Exception('Error in Login');
-            }
-
-            auth()->login($user, false);
-        } catch (Exception $error) {
-            return
         }
+
+        return $user->createToken('Bearer')->plainTextToken;
     }
 
-    public function logout()
+    public function logout(Request $request)
     {
-        Auth::logout();
-        if(Request::is(''))
-            return redirect('');
-        else
-            return \redirect('login');
+        $request->user()->tokens()->delete();
+
+        return ['status' => 'success'];
     }
 }

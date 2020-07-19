@@ -32,6 +32,9 @@ export default {
         cart: state => state.cart,
         deliveries: state => state.deliveries,
         delivery: state => state.delivery,
+        getOrderStoreLink: (state, getters, rootState, rootGetters) => {
+            return rootGetters.isAuth ? 'api/order' : 'api/order-no-register';
+        },
         getProductById: state => id => {
             return state.products.find(product => product.id == id) || {price: 0, name: ''}
         },
@@ -70,13 +73,19 @@ export default {
                 Cookie.set('cart', state.cart);
             }
         },
-        sendOrder({state}, payload = {}) {
-            return api.post('api/order', {user_info: payload, items: state.cart, delivery: state.delivery})
+        sendOrder({state, getters}, payload = {}) {
+            return api.post(getters.getOrderStoreLink, {user_info: payload, items: state.cart, delivery: state.delivery})
                 .then(function (response) {
                     Cookie.remove('cart');
                     state.cart = {};
                 });
-
+        },
+        sendOrder({state, getters}, payload = {}) {
+            return api.post(getters.getOrderStoreLink, {user_info: payload, items: state.cart, delivery: state.delivery})
+                .then(function (response) {
+                    Cookie.remove('cart');
+                    state.cart = {};
+                });
         },
         get ({commit}, payload = {}) {
             return new Promise((resolve, reject) => {
