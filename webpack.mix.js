@@ -11,4 +11,13 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js');
+mix.js('resources/js/app.js', 'public/js')
+    .webpackConfig({
+        output: {
+            publicPath: '/',
+            filename: '[name].js',
+            chunkFilename: 'js/[name].[chunkhash].chunk.js'
+        },
+    })
+    .sourceMaps()
+    .version();
