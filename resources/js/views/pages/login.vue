@@ -40,7 +40,7 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-button @click="submit()" variant="primary">Sign in</b-button>
+                            <b-button class="btn-auth" @click="submit()" variant="primary">Sign in</b-button>
                         </div>
 
                         <div v-if="showRegister">
@@ -94,7 +94,7 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-button @click="registration()" variant="primary">Register</b-button>
+                            <b-button class="btn-auth" @click="registration()" variant="primary">Register</b-button>
                         </div>
                     </b-card-body>
                     <template v-slot:footer>
@@ -169,3 +169,9 @@
         }
     }
 </script>
+
+<style>
+    .btn-auth {
+        width: 100%;
+    }
+</style>
