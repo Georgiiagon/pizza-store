@@ -6,29 +6,22 @@ use App\Http\Controllers\Controller;
 
 use App\Http\Requests\OrderRequestStore;
 use App\Models\Order;
-use App\Models\Product;
-use App\Models\User;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Cookie;
 use Illuminate\Support\Facades\DB;
-use Laravel\Sanctum\Sanctum;
 
 class OrderController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
+     * @param Request $request
      * @return Builder[]|Collection
      */
     public function index(Request $request)
     {
-         return Order::query()
-             ->with('items')
-             ->where('user_id', $request->user()->id ?? -1)
-             ->get();
+        return $request->user()->orders;
     }
 
     /**
@@ -46,17 +39,10 @@ class OrderController extends Controller
         $order->delivery = $request->input('delivery');
         $order->save();
 
-        $order->addItems($request->items);
+        $order->addItems($request->input('items'));
 
         DB::commit();
 
         return ['statue' => 'success'];
-    }
-
-    public function getCookie()
-    {
-        $orders = Order::query()->get();
-
-        dd($orders, Product::all());
     }
 }

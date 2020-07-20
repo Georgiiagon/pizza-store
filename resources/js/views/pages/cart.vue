@@ -53,6 +53,7 @@
                     <label for="input-name">Name*</label>
                     <b-form-input
                         id="input-name"
+                        :readonly="isAuth"
                         v-model="user.name"
                         aria-describedby="input-live-help input-live-feedback"
                         placeholder="Enter your name"
@@ -61,6 +62,7 @@
                     <label for="input-surname">Surname*</label>
                     <b-form-input
                         id="input-surname"
+                        :readonly="isAuth"
                         v-model="user.surname"
                         aria-describedby="input-live-help input-live-feedback"
                         placeholder="Enter your surname"
@@ -69,6 +71,7 @@
                     <label for="input-address">Address*</label>
                     <b-form-input
                         id="input-address"
+                        :readonly="isAuth"
                         v-model="user.address"
                         aria-describedby="input-live-help input-live-feedback"
                         placeholder="Enter your address"
@@ -101,6 +104,11 @@
                 }
             }
         },
+        mounted() {
+            if (this.$store.getters.isAuth) {
+                this.user = this.$store.getters.user;
+            }
+        },
         computed: {
             ...mapGetters({
                 getProductById: 'data/getProductById',
@@ -108,6 +116,7 @@
                 getTotalPrice: 'data/getTotalPrice',
                 getDeliveryPrice: 'data/getDeliveryPrice',
                 getCurrencyValue: 'data/getCurrencyValue',
+                isAuth: 'isAuth',
             }),
             ...mapState({
                 products: state => state.data.products,

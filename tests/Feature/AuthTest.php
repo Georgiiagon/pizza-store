@@ -4,8 +4,8 @@ namespace Tests\Feature;
 
 use App\Models\User;
 use Illuminate\Foundation\Testing\DatabaseTransactions;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
+use Laravel\Sanctum\Sanctum;
 use Tests\TestCase;
 
 class AuthTest extends TestCase
@@ -15,26 +15,27 @@ class AuthTest extends TestCase
 
     public function testRegister()
     {
-        $usersCount = User::count();
+        $usersCount = User::query()->count();
+        $newUser = factory(User::class)->make();
 
         $this->post('/api/register',
-            factory(User::class)->make()->toArray() + ['password' => 'password']
+            $newUser->toArray() + ['password' => 'password']
         );
 
-        $user = User::orderBy('id', 'desc')->first();
+        $user = User::query()->orderBy('id', 'desc')->first();
 
-        $this->assertAuthenticatedAs($user);
-        $this->assertEquals($usersCount + 1, User::count());
+        $this->assertEquals($usersCount + 1, User::query()->count());
+        $this->assertEquals($user->name, $newUser['name']);
+        $this->assertEquals($user->surname, $newUser['surname']);
+        $this->assertEquals($user->address, $newUser['address']);
     }
 
     public function testLogin()
     {
         $user = factory(User::class)->create();
 
-        $this->post('/api/login',
-            ['email' => $user->email, 'password' => 'password']
-        );
+        Sanctum::actingAs($user);
 
-        $this->assertAuthenticatedAs($user);
+        $this->get('/api/profile')->assertOk();
     }
 }

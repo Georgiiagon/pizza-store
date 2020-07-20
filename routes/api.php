@@ -1,6 +1,6 @@
 <?php
 
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +18,13 @@ Route::post('/login', 'Auth\LoginController@login');
 
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/profile', 'Auth\ProfileController@profile');
-    Route::resource('order', 'Api\OrderController')->only(['index', 'store']);
     Route::post('/logout', 'Auth\LoginController@logout');
+    Route::resource('order', 'Api\OrderController')->only(['index', 'store']);
 });
 Route::post('/order-no-register', 'Api\OrderController@store');
-
 Route::get('get-products', 'Api\ProductController@getProducts');
-Route::get('get-cookie', 'Api\OrderController@getCookie');
-Auth::routes(['verify' => false, 'reset' => false]);
+
+Auth::routes(['verify' => false, 'reset' => false, 'login' => false]);
 
 
 

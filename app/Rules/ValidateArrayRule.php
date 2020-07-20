@@ -8,16 +8,6 @@ use Illuminate\Contracts\Validation\Rule;
 class ValidateArrayRule implements Rule
 {
     /**
-     * Create a new rule instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //
-    }
-
-    /**
      * Determine if the validation rule passes.
      *
      * @param  string  $attribute
@@ -26,7 +16,7 @@ class ValidateArrayRule implements Rule
      */
     public function passes($attribute, $value)
     {
-        return Product::whereIn('id', array_keys($value))->exists();
+        return Product::query()->whereIn('id', array_keys($value))->exists();
     }
 
     /**
@@ -36,6 +26,6 @@ class ValidateArrayRule implements Rule
      */
     public function message()
     {
-        return "Pizza's not found!";
+        return "No products found!";
     }
 }
