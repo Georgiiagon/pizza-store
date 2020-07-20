@@ -1,11 +1,17 @@
 pizza-store - project for test assigment
 ========================================================
+https://desolate-ridge-10345.herokuapp.com/
+* Webserver: [Heroku](https://dashboard.heroku.com/login)
+* DB host: [remotemysql](https://remotemysql.com/) 
+
 This project has: 
 * registration
 * authorization
 * order history
 * main page with menu
 * grocery basket
+* Currency switcher
+
 
 Requirements:
 
