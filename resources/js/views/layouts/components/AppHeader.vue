@@ -1,6 +1,7 @@
 <template>
-    <b-navbar type="dark" toggleable="lg" variant="dark" :router="true">
+    <b-navbar type="dark" toggleable="sm" id="header" variant="dark" :router="true">
             <b-navbar-brand to="/">Pizza</b-navbar-brand>
+            <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
