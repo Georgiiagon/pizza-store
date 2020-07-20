@@ -60,8 +60,6 @@ export default {
                     .finally(function () {
                         commit('setAuth', false);
                         commit('setUser', null);
-
-                        this.$router.replace({ name: 'home' })
                     });
             });
         },

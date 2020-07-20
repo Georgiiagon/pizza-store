@@ -134,6 +134,11 @@
                 user: state => state.user,
             }),
         },
+        mounted() {
+            if (this.$store.getters.isAuth) {
+                this.$router.replace({ name: 'home' })
+            }
+        },
         methods: {
             ...mapActions({
                 login: 'login',

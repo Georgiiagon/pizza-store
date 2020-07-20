@@ -1,9 +1,67 @@
 <template>
+    <b-container>
+        <b-table :items="orders" :fields="fields" striped responsive="sm" show-empty>
 
+            <template v-slot:cell(created_at)="row" >
+                {{ (new Date(row.item.created_at)).toLocaleString() }}
+            </template>
+
+            <template v-slot:cell(items)="row">
+                <p v-for="product in getProductNames(row.item)">
+                    {{ product }}
+                </p>
+            </template>
+
+            <template v-slot:cell(sum_price)="row">
+                {{ getOrderTotalPrice(row.item) }}
+            </template>
+
+            <template v-slot:empty="scope">
+                <h4 class="text-center">No orders!</h4>
+            </template>
+        </b-table>
+    </b-container>
 </template>
 
 <script>
+    import { mapState, mapGetters } from 'vuex'
+
     export default {
-        name: "orders"
+        name: 'cart',
+        data() {
+            return {
+                fields: [
+                    { key: "created_at", label: "Date"},
+                    { key: "items", label: "Products"},
+                    { key: "sum_price", label: "Sum price"},
+                ],
+            }
+        },
+        computed: {
+            ...mapGetters({
+                orders: 'data/orders',
+                getOrderTotalPrice: 'data/getOrderTotalPrice',
+                getProductNames: 'data/getProductNames'
+            }),
+        },
+        mounted() {
+            this.$store.dispatch('data/get', {path: '/api/order', type: 'orders'})
+            this.$store.dispatch('data/get', {path: '/api/order', type: 'orders'})
+
+            if (!this.$store.getters.isAuth) {
+                this.$router.replace({ name: 'home' })
+            }
+        }
     }
 </script>
+
+<style>
+    .btn:focus {
+        outline: none;
+        box-shadow: none;
+    }
+    .btn {
+        padding-left: 1px;
+        padding-right: 1px;
+    }
+</style>

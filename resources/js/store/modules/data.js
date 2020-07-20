@@ -7,6 +7,8 @@ export default {
         products: [],
         orders: [],
         cart: JSON.parse((Cookie.get('cart') !== undefined ? Cookie.get('cart'): null) ) || {},
+        currency: 0,
+        currencies: [['$', 1], ['€', 0.87]], // [sign ,coefficient]
         deliveries: [
             {
                 'value': 1,
@@ -27,6 +29,10 @@ export default {
         delivery: 1,
     },
     getters: {
+        currency: state => state.currency,
+        getCurrencyValue: (state) => {
+            return state.currencies[state.currency];
+        },
         products: state => state.products,
         orders: state => state.orders,
         cart: state => state.cart,
@@ -56,6 +62,25 @@ export default {
 
             return parseFloat(sum).toFixed(2)
         },
+        getProductNames: () => order => {
+            let products = [];
+
+            order.items.forEach(item => {
+                products.push(' name: ' + item.name + ', count: ' + item.pivot.count);
+            });
+
+            return products
+        },
+        getOrderTotalPrice: (state, getters) => order => {
+            let sum = 0;
+            order.items.forEach(item => {
+                sum += item.price * item.pivot.count;
+            });
+            sum += getters.getDeliveryByValue(order.delivery).price;
+            sum = sum * getters.getCurrencyValue[1];
+
+            return parseFloat(sum).toFixed(2) + getters.getCurrencyValue[0]
+        },
     },
     mutations: {
         set (state, {type, data}) {
@@ -72,13 +97,6 @@ export default {
                 state.cart = JSON.parse(JSON.stringify(state.cart));
                 Cookie.set('cart', state.cart);
             }
-        },
-        sendOrder({state, getters}, payload = {}) {
-            return api.post(getters.getOrderStoreLink, {user_info: payload, items: state.cart, delivery: state.delivery})
-                .then(function (response) {
-                    Cookie.remove('cart');
-                    state.cart = {};
-                });
         },
         sendOrder({state, getters}, payload = {}) {
             return api.post(getters.getOrderStoreLink, {user_info: payload, items: state.cart, delivery: state.delivery})
