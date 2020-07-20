@@ -48,7 +48,7 @@ You may need to replace `DB_*` variables in your .env file
 ### Example:
 
 ```yaml
-DB_HOST: http://db:3306 # We are replacing actual ip with a service alias `db`
+DB_HOST=db # We are replacing actual ip with a service alias `db`
 ```
 
 ### Usage:
