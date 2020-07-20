@@ -1,0 +1,43 @@
+version: "3.3"
+
+services:
+  ngnix:
+    build:
+      context: ./docker/nginx
+    ports:
+      - 8090:80
+    links:
+      - php-fpm
+    volumes:
+    - ./:/var/www/pizza
+  db:
+    image: mysql
+    command: --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: password
+      MYSQL_DATABASE: pizza
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+  composer:
+    image: composer:latest
+    container_name: composer
+    links:
+      - php-fpm
+    volumes:
+      - ./:/var/www/pizza
+    working_dir: /var/www/pizza
+    depends_on:
+      - php-fpm
+      - db
+    command: ['/bin/sh', '-c', 'composer install && chown -R www-data storage && cp .env.example .env && php artisan optimize:clear && php artisan key:generate']
+  php-fpm:
+    build:
+      context: ./docker/php-fpm
+    volumes:
+      - ./:/var/www/pizza
+
+

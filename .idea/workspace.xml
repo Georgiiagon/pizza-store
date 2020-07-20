@@ -2,28 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c56f7938-dfd7-4533-af4c-80b3d20fc3ee" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/routes/modules/orders.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/resources/js/views/pages/orders.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.env.example" beforeDir="false" afterPath="$PROJECT_DIR$/.env.example" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Api/OrderController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Api/OrderController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Models/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Models/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_12_14_000001_create_personal_access_tokens_table.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/0.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/2.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/2.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/3.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/3.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/4.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/4.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/routes/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/routes/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/auth.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/auth.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/store/modules/data.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/store/modules/data.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/layouts/components/AppHeader.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/layouts/components/AppHeader.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/pages/cart.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/pages/cart.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/views/pages/login.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/views/pages/login.vue" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/api.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/api.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/0.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/2.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/3.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/4.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/css/app.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/element-ui/lib/theme-chalk/element-icons.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/fonts/vendor/element-ui/lib/theme-chalk/element-icons.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/ExampleComponent.vue" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -178,7 +170,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/resources/js/routes/modules" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="ts.external.directory.path" value="$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external" />
   </component>
@@ -222,6 +214,8 @@
       <workItem from="1595063063502" duration="5283000" />
       <workItem from="1595075464901" duration="14590000" />
       <workItem from="1595090264655" duration="52410000" />
+      <workItem from="1595222287530" duration="1525000" />
+      <workItem from="1595231536950" duration="3750000" />
     </task>
     <servers />
   </component>
@@ -241,17 +235,19 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="469" y="27" width="476" height="741" key="#com.intellij.refactoring.rename.AutomaticRenamingDialog/67.27.1299.741@67.27.1299.741" timestamp="1595143763059" />
-    <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1594917039598">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="423" y="143" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog" timestamp="1595236577226">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="423" y="143" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1440.900@0.0.1440.900" timestamp="1595236577226" />
     <state x="449" y="145" width="524" height="502" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/67.27.1299.741@67.27.1299.741" timestamp="1594917039598" />
     <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog" timestamp="1595175132787">
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="449" y="154" width="524" height="484" key="#com.jetbrains.php.actions.copyPaste.importReferences.PhpImportReferencesDialog/67.27.1299.741@67.27.1299.741" timestamp="1595175132787" />
-    <state x="245" y="27" width="932" height="741" key="CommitChangelistDialog2" timestamp="1595181740455">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="197" y="0" width="932" height="741" key="CommitChangelistDialog2" timestamp="1595238844738">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="197" y="0" key="CommitChangelistDialog2/0.0.1440.900@0.0.1440.900" timestamp="1595238844738" />
     <state x="245" y="27" width="932" height="741" key="CommitChangelistDialog2/67.27.1299.741@67.27.1299.741" timestamp="1595181740455" />
     <state x="499" y="154" width="424" height="484" key="FileChooserDialogImpl" timestamp="1595175010358">
       <screen x="67" y="27" width="1299" height="741" />
@@ -269,9 +265,10 @@
       <screen x="67" y="27" width="1299" height="741" />
     </state>
     <state x="372" y="224" key="com.intellij.ide.util.TipDialog/67.27.1299.741@67.27.1299.741" timestamp="1595075570299" />
-    <state x="362" y="127" width="709" height="538" key="find.popup" timestamp="1595154964773">
-      <screen x="67" y="27" width="1299" height="741" />
+    <state x="327" y="121" width="786" height="654" key="find.popup" timestamp="1595236382506">
+      <screen x="0" y="0" width="1440" height="900" />
     </state>
+    <state x="327" y="121" width="786" height="654" key="find.popup/0.0.1440.900@0.0.1440.900" timestamp="1595236382506" />
     <state x="362" y="127" width="709" height="538" key="find.popup/67.27.1299.741@67.27.1299.741" timestamp="1595154964773" />
     <state x="380" y="42" width="672" height="676" key="search.everywhere.popup" timestamp="1595067217759">
       <screen x="67" y="27" width="1299" height="741" />
