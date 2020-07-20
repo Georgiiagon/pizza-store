@@ -14,6 +14,7 @@
 
             <template v-slot:cell(sum_price)="row">
                 {{ getOrderTotalPrice(row.item) }}
+                {{ getCurrencyValue[0] }}
             </template>
 
             <template v-slot:empty="scope">
@@ -41,11 +42,11 @@
             ...mapGetters({
                 orders: 'data/orders',
                 getOrderTotalPrice: 'data/getOrderTotalPrice',
-                getProductNames: 'data/getProductNames'
+                getProductNames: 'data/getProductNames',
+                getCurrencyValue: 'data/getCurrencyValue',
             }),
         },
         mounted() {
-            this.$store.dispatch('data/get', {path: '/api/order', type: 'orders'})
             this.$store.dispatch('data/get', {path: '/api/order', type: 'orders'})
 
             if (!this.$store.getters.isAuth) {

@@ -19,11 +19,13 @@
 
             </template>
             <template v-slot:cell(price)="row">
-                {{ parseFloat(getProductById(parseInt(row.item[0])).price).toFixed(2) }}$
+                {{ parseFloat(getProductById(parseInt(row.item[0])).price * getCurrencyValue[1]).toFixed(2) }}
+                {{ getCurrencyValue[0] }}
             </template>
 
             <template v-slot:cell(sum_price)="row">
-                {{ parseFloat(getProductById(parseInt(row.item[0])).price * row.item[1]).toFixed(2) }}$
+                {{ parseFloat(getProductById(parseInt(row.item[0])).price * row.item[1] * getCurrencyValue[1]).toFixed(2) }}
+                {{ getCurrencyValue[0] }}
             </template>
 
             <template v-slot:empty="scope">
@@ -41,8 +43,8 @@
             <b-col></b-col>
             <b-col></b-col>
             <b-col class="mt-2">
-                <p>Delivery price: {{ getDeliveryPrice }}$</p>
-                <p>Total price: {{ getTotalPrice }}$</p>
+                <p>Delivery price: {{ getDeliveryPrice }} {{ getCurrencyValue[0] }}</p>
+                <p>Total price: {{ getTotalPrice }} {{ getCurrencyValue[0] }}</p>
                 <b-button v-b-modal.order-modal block variant="success">Order</b-button>
             </b-col>
         </b-row>
@@ -105,6 +107,7 @@
                 getCartArray: 'data/getCartArray',
                 getTotalPrice: 'data/getTotalPrice',
                 getDeliveryPrice: 'data/getDeliveryPrice',
+                getCurrencyValue: 'data/getCurrencyValue',
             }),
             ...mapState({
                 products: state => state.data.products,

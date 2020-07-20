@@ -8,7 +8,7 @@ export default {
         orders: [],
         cart: JSON.parse((Cookie.get('cart') !== undefined ? Cookie.get('cart'): null) ) || {},
         currency: 0,
-        currencies: [['$', 1], ['€', 0.87]], // [sign ,coefficient]
+        currencies: [['$', 1], ['€', 0.9]], // [sign ,coefficient]
         deliveries: [
             {
                 'value': 1,
@@ -30,6 +30,7 @@ export default {
     },
     getters: {
         currency: state => state.currency,
+        currencies: state => state.currencies,
         getCurrencyValue: (state) => {
             return state.currencies[state.currency];
         },
@@ -50,14 +51,16 @@ export default {
         getDeliveryByValue: state => value => {
             return state.deliveries.find(delivery => delivery.value == value)
         },
-        getDeliveryPrice: state => {
+        getDeliveryPrice: (state, getters) => {
             return state.deliveries.find(delivery => delivery.value == state.delivery).price
+                * getters.getCurrencyValue[1]
         },
         getTotalPrice: (state, getters) => {
             let sum = 0;
             getters.getCartArray.forEach(item => {
                 sum += getters.getProductById(item[0]).price * item[1];
             });
+            sum = sum * getters.getCurrencyValue[1];
             sum += getters.getDeliveryByValue(state.delivery).price;
 
             return parseFloat(sum).toFixed(2)
@@ -79,7 +82,7 @@ export default {
             sum += getters.getDeliveryByValue(order.delivery).price;
             sum = sum * getters.getCurrencyValue[1];
 
-            return parseFloat(sum).toFixed(2) + getters.getCurrencyValue[0]
+            return parseFloat(sum).toFixed(2)
         },
     },
     mutations: {

@@ -7,7 +7,7 @@
                         {{ item.description }}
                     </b-card-text>
                     <div class="clearfix">
-                        <h5 class="price float-left">{{ parseFloat(item.price).toFixed(2) }}$</h5>
+                        <h5 class="price float-left">{{ parseFloat(item.price * getCurrencyValue[1]).toFixed(2) }} {{ getCurrencyValue[0] }}</h5>
                         <span class="float-right" v-if="cart[item.id.toString()] > 0">
                             <b-button variant="link" @click="changeCart(item.id, -1)">
                                 <b-icon-dash-circle></b-icon-dash-circle>
@@ -33,15 +33,16 @@
 </template>
 
 <script>
+    import {mapGetters} from "vuex";
+
     export default {
         name: "products",
         computed: {
-            products: function() {
-                return this.$store.getters['data/products'];
-            },
-            cart: function() {
-                return this.$store.getters['data/cart'];
-            }
+            ...mapGetters({
+                products: 'data/products',
+                cart: 'data/cart',
+                getCurrencyValue: 'data/getCurrencyValue',
+            }),
         },
         methods: {
             changeCart(product_id, count) {
