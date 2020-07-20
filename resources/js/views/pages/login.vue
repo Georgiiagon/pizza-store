@@ -11,7 +11,7 @@
                         <h3 v-if="showRegister">Registration</h3>
                     </template>
                     <b-card-body>
-                        <div v-if="!showRegister">
+                        <b-form @submit.prevent="submit" v-if="!showRegister">
                             <b-form-group
                                 id="input-group-1"
                                 label="Email"
@@ -40,10 +40,10 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-button class="btn-auth" @click="submit()" variant="primary">Sign in</b-button>
-                        </div>
+                            <b-button type="submit" class="btn-auth" variant="primary">Sign in</b-button>
+                        </b-form>
 
-                        <div v-if="showRegister">
+                        <b-form @submit.prevent="registration" v-if="showRegister">
                             <b-form-group
                                 id="input-group-3"
                                 label="Email*"
@@ -94,8 +94,8 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-button class="btn-auth" @click="registration()" variant="primary">Register</b-button>
-                        </div>
+                            <b-button type="submit" class="btn-auth" variant="primary">Register</b-button>
+                        </b-form>
                     </b-card-body>
                     <template v-slot:footer>
                         <small class="text-muted" v-if="!showRegister">
@@ -144,17 +144,22 @@
                 login: 'login',
             }),
             async submit () {
-                await this.login({email: this.form.email, password: this.form.password});
-                this.$router.replace({ name: 'home' });
+                let that = this;
+                await this.login({email: this.form.email, password: this.form.password})
+                    .then(response => {
+                        this.$router.replace({ name: 'home' });
+                    })
+                    .catch((error) => {
+                        that.$appNotify.error(error.response.data);
+                    });;
             },
             async registration () {
                 let that = this;
-                await this.$store.dispatch('register', this.form).then(response => {
-
-                }).catch((error) => {
-                    console.log(error);
-                    that.$appNotify.error(error.response.data);
-                });
+                await this.$store.dispatch('register', this.form)
+                    .then(response => {})
+                    .catch((error) => {
+                        that.$appNotify.error(error.response.data);
+                    });
                 await that.submit();
             },
             async reset() {
