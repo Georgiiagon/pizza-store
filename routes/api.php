@@ -19,9 +19,8 @@ Route::post('/login', 'Auth\LoginController@login');
 Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('/profile', 'Auth\ProfileController@profile');
     Route::post('/logout', 'Auth\LoginController@logout');
-    Route::resource('order', 'Api\OrderController')->only(['index', 'store']);
 });
-Route::post('/order-no-register', 'Api\OrderController@store');
+Route::resource('order', 'Api\OrderController')->only(['index', 'store']);
 Route::get('get-products', 'Api\ProductController@getProducts');
 
 Auth::routes(['verify' => false, 'reset' => false, 'login' => false]);

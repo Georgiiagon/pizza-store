@@ -26,7 +26,7 @@ class OrderRequestStore extends FormRequest
     public function rules()
     {
         $deliveryValues = implode(',', array_column(Order::DELIVERIES, 'value'));
-//        dd($this->items);
+
         return [
             'user_info.user_name' => 'required|string',
             'user_info.user_surname' => 'required|string',

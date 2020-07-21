@@ -20,7 +20,7 @@ export default {
             state.isAuth = value
         },
         setToken (state, value) {
-            state.isAuth = value
+            state.token = value
         },
     },
     actions: {
@@ -49,7 +49,6 @@ export default {
         },
         exit({commit}) {
             return new Promise((resolve, reject) => {
-                Cookie.remove('token');
                 api.get('/api/logout')
                     .then(function (response) {
                         resolve(response);
@@ -58,8 +57,11 @@ export default {
                         reject(error);
                     })
                     .finally(function () {
+                        Cookie.remove('token');
                         commit('setAuth', false);
                         commit('setUser', null);
+                        commit('setToken', '');
+                        window.axios.defaults.headers.common['Authorization'] = '';
                     });
             });
         },

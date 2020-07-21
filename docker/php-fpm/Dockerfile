@@ -10,6 +10,3 @@ RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 RUN apt-get install -y nodejs
 
 WORKDIR /var/www/pizza
-
-RUN npm install
-#CMD ["npm", "run", "dev"]

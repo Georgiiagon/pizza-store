@@ -45,8 +45,13 @@
         },
         methods: {
             logout() {
-                this.exit();
-                this.$router.replace({ name: 'home' })
+                let that = this;
+                this.exit().then(function () {
+                    console.log(that.$store.state);
+                    if (that.$router.currentRoute.name !== 'home') {
+                        that.$router.replace({ name: 'home' })
+                    }
+                });
             },
             ...mapActions({
                 exit: 'exit',

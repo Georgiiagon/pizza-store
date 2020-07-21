@@ -21,7 +21,7 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
-        return $request->user()->orders;
+        return auth('sanctum')->user()->orders ?? [];
     }
 
     /**
@@ -35,7 +35,7 @@ class OrderController extends Controller
         DB::beginTransaction();
 
         $order = new Order($request->input('user_info'));
-        $order->user_id = $request->user()->id ?? 0;
+        $order->user_id = auth('sanctum')->user()->id ?? 0;
         $order->delivery = $request->input('delivery');
         $order->save();
 
@@ -43,6 +43,6 @@ class OrderController extends Controller
 
         DB::commit();
 
-        return ['statue' => 'success'];
+        return ['status' => 'success'];
     }
 }

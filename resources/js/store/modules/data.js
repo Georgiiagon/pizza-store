@@ -39,9 +39,6 @@ export default {
         cart: state => state.cart,
         deliveries: state => state.deliveries,
         delivery: state => state.delivery,
-        getOrderStoreLink: (state, getters, rootState, rootGetters) => {
-            return rootGetters.isAuth ? 'api/order' : 'api/order-no-register';
-        },
         getProductById: state => id => {
             return state.products.find(product => product.id == id) || {price: 0, name: ''}
         },
@@ -61,7 +58,7 @@ export default {
                 sum += getters.getProductById(item[0]).price * item[1];
             });
             sum = sum * getters.getCurrencyValue[1];
-            sum += getters.getDeliveryByValue(state.delivery).price;
+            sum += getters.getDeliveryPrice;
 
             return parseFloat(sum).toFixed(2)
         },
@@ -102,7 +99,7 @@ export default {
             }
         },
         sendOrder({state, getters}, payload = {}) {
-            return api.post(getters.getOrderStoreLink, {user_info: payload, items: state.cart, delivery: state.delivery})
+            return api.post('api/order', {user_info: payload, items: state.cart, delivery: state.delivery})
                 .then(function (response) {
                     Cookie.remove('cart');
                     state.cart = {};
