@@ -8,8 +8,6 @@ class Order extends Model
 {
     protected $fillable = ['user_id', 'delivery', 'user_name', 'user_surname', 'user_address'];
 
-    protected $with = ['user'];
-
     const DELIVERIES = [
         [
             'value' => 1,
@@ -27,21 +25,6 @@ class Order extends Model
             'price' => 0,
         ],
     ];
-
-    public function setUserNameAttribute($value)
-    {
-        $this->attributes['user_name'] = $this->user_id ? $this->user->name: $value;
-    }
-
-    public function setUserSurnameAttribute($value)
-    {
-        $this->attributes['user_surname'] = $this->user_id ? $this->user->surname: $value;
-    }
-
-    public function setFirstNameAttribute($value)
-    {
-        $this->attributes['user_address'] = $this->user_id ? $this->user->address: $value;
-    }
 
     public function getDeliveryNameAttribute()
     {

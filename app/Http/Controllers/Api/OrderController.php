@@ -30,7 +30,7 @@ class OrderController extends Controller
      * @param OrderRequestStore $request
      * @return array
      */
-    public function store(OrderRequestStore $request)
+    public function store(OrderRequestStore $request): array
     {
         DB::beginTransaction();
 
