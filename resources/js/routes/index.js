@@ -22,6 +22,7 @@ let router = new VueRouter({
                 ...orders
             ]
         },
+        { path: "*", redirect: '/' } // instead of 404 page
     ],
 });
 
