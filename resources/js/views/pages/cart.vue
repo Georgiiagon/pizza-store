@@ -163,4 +163,8 @@
         padding-left: 1px;
         padding-right: 1px;
     }
+
+    label {
+        margin-top: 5px;
+    }
 </style>

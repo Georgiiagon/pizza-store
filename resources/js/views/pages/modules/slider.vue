@@ -7,9 +7,8 @@
             controls
             indicators
             background="#ababab"
-
             img-width="1024"
-            style="text-shadow: 1px 1px 2px #333;"
+            style="text-shadow: 1px 1px 2px #333"
             @sliding-start="onSlideStart"
             @sliding-end="onSlideEnd"
         >
