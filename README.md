@@ -1,4 +1,4 @@
-pizza-store - project for test assigment
+pizza-store - project for test assignment
 ========================================================
 https://desolate-ridge-10345.herokuapp.com/
 * Webserver: [Heroku](https://dashboard.heroku.com/login)
