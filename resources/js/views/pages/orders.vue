@@ -12,6 +12,10 @@
                 </p>
             </template>
 
+            <template v-slot:cell(delivery)="row">
+                {{ getDeliveryByValue(row.item.delivery).text }}
+            </template>
+
             <template v-slot:cell(sum_price)="row">
                 {{ getOrderTotalPrice(row.item) }}
                 {{ getCurrencyValue[0] }}
@@ -34,6 +38,7 @@
                 fields: [
                     { key: "created_at", label: "Date"},
                     { key: "items", label: "Products"},
+                    { key: "delivery", label: "Delivery"},
                     { key: "sum_price", label: "Sum price"},
                 ],
             }
@@ -44,6 +49,7 @@
                 getOrderTotalPrice: 'data/getOrderTotalPrice',
                 getProductNames: 'data/getProductNames',
                 getCurrencyValue: 'data/getCurrencyValue',
+                getDeliveryByValue: 'data/getDeliveryByValue',
             }),
         },
         mounted() {
