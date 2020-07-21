@@ -1,4 +1,4 @@
-pizza-store - project for test assignment
+pizza-store - project for a test assignment
 ========================================================
 https://desolate-ridge-10345.herokuapp.com/
 * Webserver: [Heroku](https://dashboard.heroku.com/login)
@@ -27,8 +27,8 @@ Installation
 1. Make sure the required services are up and running;
 2. Clone this repository and checkout needed branch;
 3. Create database;
-4. Install required dependencies: `composer install` for development environment or `composer install --no-dev`;
-5. Configure webserver to pass all requests to the public/index.php file.
+4. Install required dependencies: `composer install` for a development environment or `composer install --no-dev`;
+5. Configure webserver to pass all requests to the public/index.php.
  In dev environment you can just run Laravel's webserver via `php artisan serve` console command;
 6. Build frontend: `npm install` and `npm run dev` (or `npm run prod` in production). Re-run `npm run dev` after making changes to frontend to reflect them in your local webserver or run `npm run watch`;
 7. Create environment file `cp .env.example .env` and update variables inside.
@@ -58,12 +58,12 @@ DB_HOST=db # We are replacing actual ip with a service alias `db`
 
 ### Usage:
 
-1. Run `docker-compose up -d` to setup a services cluster in background, if you would like to see logs output then start it with `docker-compose up`.
+1. Run `docker-compose up -d` to setup a services cluster in the background, if you would like to see logs output then start it with `docker-compose up`.
 2. Wait until all services aren't started  (!!!)
-3. Run `docker-compose run php-fpm php artisan migrate` (you may run the `docker-compose run php-fpm php artisan db:seed` too)
-4. To build frontend part run `docker-compose run php-fpm npm install` and `docker-compose run php-fpm npm run dev`
+3. Run `docker-compose exec php-fpm php artisan migrate` (you may run the `docker-compose exec php-fpm php artisan db:seed` too)
+4. To build frontend part run `docker-compose exec php-fpm npm install` and `docker-compose exec php-fpm npm run dev`
 5. Check panel with docker-machine ip (127.0.0.1:8090)
-6. For checking logs type `docker-compose logs` in your repository folder , also you can see available containers with `docker-compose ps` ,
+6. For checking logs type `docker-compose logs` in your repository folder, also you can see available containers with `docker-compose ps`,
 to check logs of specific container run `sudo docker logs container_name` where container_name is one of available containers 
-or `docker-compose logs service_name` where service_name is one of available services which are described in `docker-compose.yml` 
+or `docker-compose logs service_name` where service_name is one of the available services which are described in `docker-compose.yml` 
 6. To stop services if they are running in foreground mode type `ctrl+c` or `docker-compose down` for background mode
