@@ -12,11 +12,11 @@ class ProductSeeder extends Seeder
      */
     public function run()
     {
-        for ($number = 1; $number < 9; $number++) {
+        foreach (['Margherita', 'Carbonara', 'Tonno', 'Romana', 'Americana', 'Rustica', 'Contadina', 'Calzone'] as $index => $name) {
             factory(Product::class)->create([
-                'name' => "Pizza $number",
-                'description' => "Pizza's description $number",
-                'image' => "/images/pizzas/pizza-$number.jpeg",
+                'name' => "$name pizza",
+                'description' => "$name's description",
+                'image' => "/images/pizzas/pizza-" . ($index + 1) . ".jpeg",
             ]);
         }
     }

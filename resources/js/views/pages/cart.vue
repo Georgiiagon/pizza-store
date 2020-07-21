@@ -1,6 +1,6 @@
 <template>
     <b-container v-if="products.length !== 0">
-        <b-table :items="getCartArray" :fields="fields" striped responsive="sm" show-empty empty-text="Cart is empty!">
+        <b-table :items="getCartArray" :fields="fields" striped responsive show-empty empty-text="Cart is empty!">
 
             <template v-slot:cell(image)="row" >
                 <img width="200" :alt="getProductById(parseInt(row.item[0])).name" :src="getProductById(parseInt(row.item[0])).image">
