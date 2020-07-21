@@ -77,7 +77,10 @@
                         placeholder="Enter your address"
                         trim
                     ></b-form-input>
-                    <b-button class="mt-3" variant="success" block @click="sendOrder">Deliver!</b-button>
+                    <b-button class="mt-3" variant="success" block @click="sendOrder" :disabled="loading">
+                        <b-spinner v-if="loading" small></b-spinner>
+                        Deliver!
+                    </b-button>
                 </div>
         </b-modal>
     </b-container>
@@ -101,7 +104,8 @@
                     name: '',
                     address: '',
                     surname: '',
-                }
+                },
+                loading: false,
             }
         },
         mounted() {
@@ -128,15 +132,17 @@
         methods: {
             sendOrder() {
                 let that = this;
+                this.loading = true;
                 this.$store.dispatch('data/sendOrder', {
                     user_name: this.user.name,
                     user_surname: this.user.surname,
                     user_address: this.user.address
                 }).then(function () {
                     that.$appNotify.success('You have successfully ordered your pizza!');
-
+                    that.loading = false;
                     that.$bvModal.hide('order-modal')
                 }).catch((error) => {
+                    that.loading = false;
                     that.$appNotify.error(error.response.data);
                 });
             },
