@@ -21,7 +21,7 @@
                     <template v-slot:footer>
                         <b-button block icon="cart3" @click="changeCart(item.id, 1)" variant="secondary">
                             <b-icon-cart3></b-icon-cart3>
-                            <span v-if="cart[item.id.toString()] == 0">Want!</span>
+                            <span v-if="cart[item.id.toString()] == 0 || !cart[item.id.toString()]">Want!</span>
                             <span v-if="cart[item.id.toString()] > 0">One more!</span>
                         </b-button>
                     </template>
