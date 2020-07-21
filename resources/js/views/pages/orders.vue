@@ -17,8 +17,7 @@
             </template>
 
             <template v-slot:cell(sum_price)="row">
-                {{ getOrderTotalPrice(row.item) }}
-                {{ getCurrencyValue[0] }}
+                {{ getCurrencyValue[0] }}{{ getOrderTotalPrice(row.item) }}
             </template>
 
             <template v-slot:empty="scope">

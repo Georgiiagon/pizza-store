@@ -16,6 +16,7 @@
                                 id="input-group-1"
                                 label="Email"
                                 label-for="input-1"
+                                class="text-left"
                             >
                                 <b-form-input
                                     id="input-1"
@@ -29,6 +30,7 @@
                             <b-form-group
                                 id="input-group-2"
                                 label="Password"
+                                class="text-left"
                                 label-for="input-2"
                             >
                                 <b-form-input
@@ -50,6 +52,7 @@
                             <b-form-group
                                 id="input-group-3"
                                 label="Email*"
+                                class="text-left"
                                 label-for="input-3"
                             >
                                 <b-form-input
@@ -61,7 +64,7 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-5" label="Name*" label-for="input-5">
+                            <b-form-group id="input-group-5" label="Name*" class="text-left" label-for="input-5">
                                 <b-form-input
                                     id="input-5"
                                     v-model="form.name"
@@ -70,7 +73,7 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-6" label="Surname*" label-for="input-6">
+                            <b-form-group id="input-group-6" label="Surname*" class="text-left" label-for="input-6">
                                 <b-form-input
                                     id="input-6"
                                     v-model="form.surname"
@@ -79,7 +82,7 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-7" label="Address*" label-for="input-7">
+                            <b-form-group id="input-group-7" label="Address*" class="text-left" label-for="input-7">
                                 <b-form-input
                                     id="input-7"
                                     v-model="form.address"
@@ -87,7 +90,7 @@
                                 ></b-form-input>
                             </b-form-group>
 
-                            <b-form-group id="input-group-4" label="Password*" label-for="input-4">
+                            <b-form-group id="input-group-4" label="Password*" class="text-left" label-for="input-4">
                                 <b-form-input
                                     id="input-4"
                                     v-model="form.password"

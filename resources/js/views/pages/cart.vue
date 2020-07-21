@@ -19,13 +19,11 @@
 
             </template>
             <template v-slot:cell(price)="row">
-                {{ parseFloat(getProductById(parseInt(row.item[0])).price * getCurrencyValue[1]).toFixed(2) }}
-                {{ getCurrencyValue[0] }}
+                {{ getCurrencyValue[0] }}{{ parseFloat(getProductById(parseInt(row.item[0])).price * getCurrencyValue[1]).toFixed(2) }}
             </template>
 
             <template v-slot:cell(sum_price)="row">
-                {{ parseFloat(getProductById(parseInt(row.item[0])).price * row.item[1] * getCurrencyValue[1]).toFixed(2) }}
-                {{ getCurrencyValue[0] }}
+                {{ getCurrencyValue[0] }}{{ parseFloat(getProductById(parseInt(row.item[0])).price * row.item[1] * getCurrencyValue[1]).toFixed(2) }}
             </template>
 
             <template v-slot:empty="scope">
@@ -43,8 +41,8 @@
             <b-col></b-col>
             <b-col></b-col>
             <b-col class="mt-2">
-                <p>Delivery price: {{ getDeliveryPrice }} {{ getCurrencyValue[0] }}</p>
-                <p>Total price: {{ getTotalPrice }} {{ getCurrencyValue[0] }}</p>
+                <p>Delivery price: {{ getCurrencyValue[0] }}{{ getDeliveryPrice }} </p>
+                <p>Total price: {{ getCurrencyValue[0] }}{{ getTotalPrice }} </p>
                 <b-button v-b-modal.order-modal block variant="success">Order</b-button>
             </b-col>
         </b-row>

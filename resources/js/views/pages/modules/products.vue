@@ -7,7 +7,7 @@
                         {{ item.description }}
                     </b-card-text>
                     <div class="clearfix">
-                        <h5 class="price float-left">{{ parseFloat(item.price * getCurrencyValue[1]).toFixed(2) }} {{ getCurrencyValue[0] }}</h5>
+                        <h5 class="price float-left">{{ getCurrencyValue[0] }}{{ parseFloat(item.price * getCurrencyValue[1]).toFixed(2) }} </h5>
                         <span class="float-right" v-if="cart[item.id.toString()] > 0">
                             <b-button variant="link" @click="changeCart(item.id, -1)">
                                 <b-icon-dash-circle></b-icon-dash-circle>

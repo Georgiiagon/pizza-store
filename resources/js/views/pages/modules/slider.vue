@@ -7,6 +7,7 @@
             controls
             indicators
             background="#ababab"
+
             img-width="1024"
             style="text-shadow: 1px 1px 2px #333;"
             @sliding-start="onSlideStart"
@@ -19,15 +20,15 @@
                 img-src="/images/slides/slider-1.jpg"
             ></b-carousel-slide>
             <b-carousel-slide img-src="/images/slides/slider-7.jpg">
-                <h1>Delicious.</h1>
+                <h1>Delicious</h1>
             </b-carousel-slide>
 
             <b-carousel-slide img-src="/images/slides/slider-8.jpg">
-                <h1>Quality.</h1>
+                <h1>Quality</h1>
             </b-carousel-slide>
 
             <b-carousel-slide img-src="/images/slides/slider-9.jpeg">
-                <h1>Fast.</h1>
+                <h1>Fast</h1>
             </b-carousel-slide>
         </b-carousel>
     </div>
