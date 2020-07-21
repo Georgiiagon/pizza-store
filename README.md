@@ -60,8 +60,8 @@ DB_HOST=db # We are replacing actual ip with a service alias `db`
 
 1. Run `docker-compose up -d` to setup a services cluster in the background, if you would like to see logs output then start it with `docker-compose up`.
 2. Wait until all services aren't started  (!!!)
-3. Run `docker-compose run php-fpm php artisan migrate` (you may run the `docker-compose run php-fpm php artisan db:seed` too)
-4. To build frontend part run `docker-compose run php-fpm npm install` and `docker-compose run php-fpm npm run dev`
+3. Run `docker-compose exec php-fpm php artisan migrate` (you may run the `docker-compose exec php-fpm php artisan db:seed` too)
+4. To build frontend part run `docker-compose exec php-fpm npm install` and `docker-compose exec php-fpm npm run dev`
 5. Check panel with docker-machine ip (127.0.0.1:8090)
 6. For checking logs type `docker-compose logs` in your repository folder, also you can see available containers with `docker-compose ps`,
 to check logs of specific container run `sudo docker logs container_name` where container_name is one of available containers 
