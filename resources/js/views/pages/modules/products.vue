@@ -54,7 +54,7 @@
 
 <style>
     .pizza-item {
-        margin-bottom: 10px;
+        margin-bottom: 20px;
     }
     .btn:focus {
         outline: none;
