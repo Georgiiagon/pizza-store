@@ -6,7 +6,10 @@
             <b-collapse id="nav-collapse" is-nav>
                 <b-navbar-nav>
                     <b-nav-item :active="1 === activeLink" to="/home">Home</b-nav-item>
-                    <b-nav-item :active="2 === activeLink" to="/cart">Cart</b-nav-item>
+                    <b-nav-item :active="2 === activeLink" to="/cart">
+                        Cart
+                        <span v-if="getCartLength > 0">({{ getCartLength }})</span>
+                    </b-nav-item>
                     <b-nav-item :active="4 === activeLink" v-if="isAuth" to="/orders">Orders</b-nav-item>
 
                 </b-navbar-nav>
@@ -34,7 +37,8 @@
                 isAuth: 'isAuth',
                 user: 'user',
                 getCurrencyValue: 'data/getCurrencyValue',
-                currencies: 'data/currencies'
+                currencies: 'data/currencies',
+                getCartLength: 'data/getCartLength',
             }),
             routes() {
                 return this.$router.options.routes[0].children;

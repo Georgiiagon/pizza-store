@@ -45,6 +45,9 @@ export default {
         getCartArray: state => {
             return Object.entries(state.cart).filter(item => item[1] !== 0);
         },
+        getCartLength: (state, getters) => {
+            return getters.getCartArray.length;
+        },
         getDeliveryByValue: state => value => {
             return state.deliveries.find(delivery => delivery.value == value)
         },
